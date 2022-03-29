@@ -1,6 +1,6 @@
 <h1 align="center">Message Board</h1>
 
-#### By Melisa Edgar, Matt Eiler, and Liam Eller | [LinkedIn](https://www.linkedin.com/in/liamellerportland/) | [email](mailto:<liamthelastson@gmail.com>)
+#### By Melisa Edgar, Matt Eilar, and Liam Eller | [LinkedIn](https://www.linkedin.com/in/liamellerportland/) | [email](mailto:<liamthelastson@gmail.com>)
 
 #### _A MVC application practicing making your own api_
 

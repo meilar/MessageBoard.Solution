@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MessageBoard.Models;
+using System;
 
 namespace MessageBoard.Controllers
 {
@@ -19,9 +20,19 @@ namespace MessageBoard.Controllers
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Message>>> Get()
+    public async Task<ActionResult<IEnumerable<Message>>> Get(DateTime datePublished)
     {
-      return await _db.Messages.ToListAsync();
+      var query = _db.Messages.AsQueryable();
+      DateTime time = DateTime.Now;
+      if (datePublished < time)
+      {
+        query = query.Where(m => m.DatePublished > datePublished);
+        return await query.ToListAsync();
+      }
+      else 
+      {
+        return await _db.Messages.ToListAsync();
+      }
     }
 
     [HttpGet("{id}")]
