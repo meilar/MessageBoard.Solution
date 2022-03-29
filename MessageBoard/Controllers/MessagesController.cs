@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Swashbuckle.AspNetCore.Annotations;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MessageBoard.Models;
@@ -8,7 +9,9 @@ using System;
 
 namespace MessageBoard.Controllers
 {
+  [Produces("application/json")]
   [Route("api/[controller]")]
+  [SwaggerTag("CRUD routes for messages")]
   [ApiController]
   public class MessagesController : ControllerBase
   {
@@ -20,7 +23,8 @@ namespace MessageBoard.Controllers
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Message>>> Get(DateTime datePublished)
+    public async Task<ActionResult<IEnumerable<Message>>> Get(
+        [FromQuery, SwaggerParameter("Search date", Required = true)]DateTime datePublished)
     {
       var query = _db.Messages.AsQueryable();
       DateTime time = DateTime.Now;
@@ -36,7 +40,7 @@ namespace MessageBoard.Controllers
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<Message>> GetMessage(int id)
+    public async Task<ActionResult<Message>> GetMessage([FromRoute, SwaggerParameter("Message ID")]int id)
     {
       var message = await _db.Messages.FindAsync(id);
       if(message == null)

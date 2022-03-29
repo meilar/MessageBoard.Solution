@@ -24,6 +24,11 @@ namespace MessageBoard
             services.AddDbContext<MessageBoardContext>(opt =>
                 opt.UseMySql(Configuration["ConnectionStrings:DefaultConnection"], ServerVersion.AutoDetect(Configuration["ConnectionStrings:DefaultConnection"])));
             services.AddControllers();
+            services.AddSwaggerGen(c =>
+            {
+                c.EnableAnnotations();
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -37,7 +42,11 @@ namespace MessageBoard
             // app.UseHttpsRedirection();
 
             app.UseRouting();
+
             app.UseCors();
+          
+            app.UseSwagger();
+            app.UseSwaggerUI();
 
             app.UseAuthorization();
 
