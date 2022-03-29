@@ -42,6 +42,9 @@ namespace MessageBoard
             // app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors();
+          
             app.UseSwagger();
             app.UseSwaggerUI();
 
