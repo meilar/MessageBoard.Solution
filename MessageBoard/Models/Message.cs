@@ -11,7 +11,7 @@ namespace MessageBoard.Models
     public int MessageId {get; set;}
     public string Author {get; set;}
     public string Body {get; set;}
-    public DateTime DatePublished {get;}
+    public DateTime DatePublished {get; set;}
 
   }
 }

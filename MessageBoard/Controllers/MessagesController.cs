@@ -20,13 +20,14 @@ namespace MessageBoard.Controllers
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Message>>> Get(DateTime datePublished)
+    public async Task<ActionResult<IEnumerable<Message>>> Get(string datePublished)
     {
+      DateTime currentDate = DateTime.UtcNow;
+      DateTime userDate = DateTime.Parse(datePublished);
       var query = _db.Messages.AsQueryable();
-      DateTime time = DateTime.Now;
-      if (datePublished < time)
+      if (userDate < currentDate)
       {
-        query = query.Where(m => m.DatePublished > datePublished);
+        query = _db.Messages.Where(m => m.DatePublished < userDate);
         return await query.ToListAsync();
       }
       else 

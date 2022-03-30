@@ -8,8 +8,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MessageBoard.Migrations
 {
     [DbContext(typeof(MessageBoardContext))]
-    [Migration("20220328211438_SeedData")]
-    partial class SeedData
+    [Migration("20220329223454_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -64,6 +64,18 @@ namespace MessageBoard.Migrations
                             MessageId = 5,
                             Author = "Victoria fincert",
                             Body = "Please trust yourself. No one knows you better than yourself"
+                        },
+                        new
+                        {
+                            MessageId = 6,
+                            Author = "Jossi Brown",
+                            Body = "Life is too short for what if's"
+                        },
+                        new
+                        {
+                            MessageId = 7,
+                            Author = "Mel Gibson",
+                            Body = "this is a test"
                         });
                 });
 #pragma warning restore 612, 618
